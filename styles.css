@@ -93,10 +93,10 @@ span.finish {
     background-color: #A2BCE0;
 }
 
-select, input[type="text"], input[type=number] {
+select, input[type="text"], input[type=number], input[type=date] {
     margin: 15px 0px;
     width: 350px;
-    padding: 5px 35px 5px 5px;
+    /* padding: 5px 35px 5px 5px; */
     font-size: 25px;
     border: 2px solid #BEB8EB;
     border-radius: 10px;
@@ -106,11 +106,14 @@ select, input[type="text"], input[type=number] {
     background-color: #403f49;
 }
 
+input[type=date] {
+    width: 280px !important;
+}
+
 select.invalid {
     background-color: #ffa1a1d0;
 }
-  
-/* Mark input boxes that gets an error on validation: */
+    
 input.invalid {
     background-color: #ffa1a1;
 }
@@ -133,10 +136,25 @@ input[type=color] {
     height: 120px;
 }
 
+#rangeRead {
+    width: 50px;
+    font-size: 25px;
+    height: 45px;
+    outline:none;
+    color: #c4dcff;
+    background-color: #403f49;
+    border: none;
+}
+
 fieldset {
     margin-top: 35px;
     border-width: 2px;
     border-color: #BEB8EB;
     border-radius: 10px;
 }
+
+fieldset.invalid {
+    border-color: #ffa1a1;
+}
+
 

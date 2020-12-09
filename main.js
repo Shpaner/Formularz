@@ -62,14 +62,16 @@ function validate() {
     data = pages[currentPage].getElementsByTagName("select")[0];
     if (data.options[data.selectedIndex].value == "") {
       isValid = false;
-      data.className += "invalid";
+      if (data.className == '')
+        data.className += "invalid";
     }
     
     // Input box
     data = pages[currentPage].getElementsByTagName("input")[0];
     if (data.value == "") {
       isValid = false;
-      data.className += "invalid";
+      if (data.className == '')
+        data.className += "invalid";
     }
   }
 
@@ -81,7 +83,8 @@ function validate() {
       if (data[i].type != "radio") {
         if (data[i].value == "") {
           isValid = false;
-          data[i].className += "invalid";
+          if (data[i].className == '')
+            data[i].className += "invalid";
         }
       } else {
         // check radio inputs
@@ -90,6 +93,22 @@ function validate() {
           break;
         } else {
           isValid = false;
+          var fs = pages[currentPage].getElementsByTagName("fieldset")[0];
+          if (data[i].className == '')
+            fs.className += "invalid";
+        }
+      }
+    }
+  }
+
+  else if (currentPage == 4) {
+    data = pages[currentPage].getElementsByTagName("input");
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].type == "date") {
+        if (data[i].value == "") {
+          isValid = false;
+          if (data[i].className == '')
+            data[i].className += "invalid";
         }
       }
     }

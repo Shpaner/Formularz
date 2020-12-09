@@ -73,12 +73,33 @@
       </div>
     </div>
 
-    <div class="page">Data dostawy
-      <!--date-->
+    <div class="page">
+      <div>
+        <fieldset>
+        <legend>Data produkcji</legend>
+        <label for="date1">Od: </label>
+        <input type="date" name="date1" id="date1" oninput="this.className = ''">
+        <label for="date2">Do: </label>
+        <input type="date" name="date2" id="date2" oninput="this.className = ''">
+        </fieldset>
+      </div>
+      <div>
+        <fieldset>
+        <legend>Przebieg (w tys. km)</legend>
+        <label for="range1">Od: </label>
+        <input type="range" id="range1" name="range1" min="0" max="500" value="0" oninput="this.nextElementSibling.value = this.value">
+        <input id="rangeRead" value="0" readonly>
+        <label for="range2">Do: </label>
+        <input type="range" id="range2" name="range2" min="0" max="500" value="0" oninput="this.nextElementSibling.value = this.value">
+        <input id="rangeRead" value="0" readonly>
+        </fieldset>
+      </div>
+      <div>
+        <p>Dodatkowe dane (nieobowiązkowe):</p>
+        <input type="file" id="additionalFile" name="additionalFile" accept="image/png, image/jpeg">
+      </div>
       <!--time-->
       <!--map?-->
-      <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-      <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
     </div>
 
     <div class="page">Dane osobowe:
