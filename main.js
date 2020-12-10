@@ -1,55 +1,61 @@
 var currentPage = 0;
 
-// on open show first tab
+// on open show first page
 document.addEventListener('DOMContentLoaded', function() {
-    showTab();
+    showpage();
 }, false)
 
-function showTab() {
+function showpage() {
 
-  // This function will display the specified tab of the form...
   var pages = document.getElementsByClassName("page");
   pages[currentPage].style.display = "block";
-  //... and fix the Previous/Next buttons:
+
   if (currentPage == 0) {
     document.getElementById("prevBtn").style.display = "none";
   } else {
     document.getElementById("prevBtn").style.display = "inline";
   }
+
   if (currentPage == (pages.length - 1)) {
     document.getElementById("nextBtn").innerHTML = "Zakończ";
   } else {
     document.getElementById("nextBtn").innerHTML = "Dalej";
   }
-  //... and run a function that will display the correct step indicator:
-  changeActiveIndicator(currentPage)
+
+  changeActiveSteps(currentPage)
 }
 
-function nextPage(n) {
+function changePage(x) {
 
   document.getElementById("header").style.display = "block";
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("page");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validate()) return false;
-  // Hide the current tab:
-  x[currentPage].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentPage = currentPage + n;
-  // if you have reached the end of the form...
-  if (currentPage >= x.length) {
-    // ... the form gets submitted:
+  var pages = document.getElementsByClassName("page");
+  
+  // validate current page
+  if (x == 1 && !validatePage()) 
+    return false;
+
+  // hide current page
+  pages[currentPage].style.display = "none";
+
+  // change current page according to x
+  currentPage = currentPage + x;
+  
+  // last page
+  if (currentPage >= pages.length) {
     //document.getElementById("regForm").submit();
     
     alert("Dziękuje za wypełnienie formularza.")
+    document.getElementById("regForm").reset();
+    currentPage = 0;
+    showpage(currentPage);
     
     return false;
   }
   // Otherwise, display the correct tab:
-  showTab(currentPage);
+  showpage(currentPage);
 }
 
-function validate() {
+function validatePage() {
 
   var pages, data
   var isValid = true;
@@ -77,7 +83,7 @@ function validate() {
 
   // page 2
   else if (currentPage == 2) {
-    // Number input box
+    // number input box
     data = pages[currentPage].getElementsByTagName("input");
     for (var i = 0; i < data.length; i++) {
       if (data[i].type != "radio") {
@@ -87,20 +93,21 @@ function validate() {
             data[i].className += "invalid";
         }
       } else {
-        // check radio inputs
+        // radio inputs
         if (data[i].checked) {
           isValid = true;
           break;
         } else {
           isValid = false;
           var fs = pages[currentPage].getElementsByTagName("fieldset")[0];
-          if (data[i].className == '')
+          if (fs.className == '')
             fs.className += "invalid";
         }
       }
     }
   }
 
+  // page 4
   else if (currentPage == 4) {
     data = pages[currentPage].getElementsByTagName("input");
     for (var i = 0; i < data.length; i++) {
@@ -112,6 +119,26 @@ function validate() {
         }
       }
     }
+
+    // compare range values
+    if (data[data.length - 6].value > data[data.length - 3].value) {
+      isValid = false;
+      document.getElementById("rangeAlert").style.visibility = "visible";
+    } else {
+      document.getElementById("rangeAlert").style.visibility = "hidden";
+    }
+  }
+
+  // page 5
+  else if (currentPage == 5) {
+    data = pages[currentPage].getElementsByTagName("input");
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].value == "") {
+        isValid = false;
+        if (data[i].className == '')
+          data[i].className += " invalid";
+      }
+    }
   }
 
   if (isValid) {
@@ -121,36 +148,19 @@ function validate() {
   return isValid;
 }
 
-function changeActiveIndicator(curPage) {
-  // This function removes the "active" class of all steps...
+function changeActiveSteps(curPage) {
+
+  // remove "active" status from all the steps
   var steps = document.getElementsByClassName("step");
   for (var i = 0; i < steps.length; i++) {
     steps[i].className = steps[i].className.replace(" active", "");
   }
-  //... and adds the "active" class on the current step:
+  
+  // make only current page active
   steps[curPage].className += " active";
 }
 
-
-
-
-
-
-
-
-
-
-
-  // else {
-  //   data = pages[currentPage].getElementsByTagName("input");
-  //   // A loop that checks every input field in the current tab:
-  //   for (var i = 0; i < data.length; i++) {
-  //     // If a field is empty...
-  //     if (data[i].value == "") {
-  //       // add an "invalid" class to the field:
-  //       data[i].className += " invalid";
-  //       // and set the current valid status to false
-  //       isValid = false;
-  //     }
-  //   }
-  // }
+// change class names to normal
+function changeClassName() {
+  document.getElementsByTagName("fieldset")[0].className = '';
+}

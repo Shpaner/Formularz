@@ -93,10 +93,10 @@ span.finish {
     background-color: #A2BCE0;
 }
 
-select, input[type="text"], input[type=number], input[type=date] {
+select, input[type="text"], input[type=number], input[type=date], 
+input[type=email], input[type=password] {
     margin: 15px 0px;
     width: 350px;
-    /* padding: 5px 35px 5px 5px; */
     font-size: 25px;
     border: 2px solid #BEB8EB;
     border-radius: 10px;
@@ -157,4 +157,11 @@ fieldset.invalid {
     border-color: #ffa1a1;
 }
 
+#rangeAlert {
+    visibility: hidden;
+    color: #ffa1a1;
+    font-size: 20px;
+    border: none;
+    width: 800px;
+}
 
