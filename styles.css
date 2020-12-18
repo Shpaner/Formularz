@@ -16,7 +16,7 @@ html {
     padding: 20%;
 }
   
-#regForm {
+#carForm {
     margin: 75px auto;
     padding: 40px;
     width: 70%;
@@ -69,10 +69,8 @@ button:hover {
 
 #stepsDiv {
     text-align:center;
-    /* margin-top:175%; */
 }
   
-/* Make circles that indicate the steps of the form: */
 span {
     height: 20px;
     width: 20px;
@@ -88,7 +86,6 @@ span.active {
     opacity: 1;
 }
   
-/* Mark the steps that are finished and valid: */
 span.finish {
     background-color: #A2BCE0;
 }

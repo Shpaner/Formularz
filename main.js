@@ -44,8 +44,7 @@ function changePage(x) {
   if (currentPage >= pages.length) {
     //document.getElementById("regForm").submit();
     
-    alert("Dziękuje za wypełnienie formularza.")
-    document.getElementById("regForm").reset();
+    document.getElementById("carForm").reset();
     currentPage = 0;
     showpage(currentPage);
     
